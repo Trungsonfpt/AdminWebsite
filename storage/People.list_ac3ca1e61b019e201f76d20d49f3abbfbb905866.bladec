@@ -1,0 +1,30 @@
+<?php $_shouldextend[1]=1; ?>
+<?php $this->startSection('content'); ?>
+ <a href="<?php echo \htmlentities(route('add-people')??'', ENT_QUOTES, 'UTF-8', false); ?>"><button class="themsp"> Thêm nhân viên</button></a><br>
+<table border="1" width="100%"  >
+
+ <tr>
+ <td>ID</td>
+ <td>Tên nhân viên</td>
+ <td>Tuổi</td>
+ <td>Giới tính</td>
+ <td>Hành động</td>
+ </tr>
+ <?php $__currentLoopData = $list; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $pr): $loop = $this->incrementLoopIndices();  ?>
+ <tr>
+ <td><?php echo \htmlentities($pr ->id??'', ENT_QUOTES, 'UTF-8', false); ?></td>
+ <td><?php echo \htmlentities($pr ->name??'', ENT_QUOTES, 'UTF-8', false); ?></td>
+ <td><?php echo \htmlentities($pr ->age??'', ENT_QUOTES, 'UTF-8', false); ?></td>
+ <td><?php echo \htmlentities($pr ->sex??'', ENT_QUOTES, 'UTF-8', false); ?></td>
+ <td>
+ <a href="<?php echo \htmlentities(route('edit-people/'.$pr->id)??'', ENT_QUOTES, 'UTF-8', false); ?>"><button class="xssp"> Sửa</button></a>
+ <a href="<?php echo \htmlentities(route('delete-people/'.$pr->id)??'', ENT_QUOTES, 'UTF-8', false); ?>"><button class="xssp"> Xóa</button></a>
+ </td>
+ </tr>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+
+</table>
+<?php $this->stopSection(); ?>
+
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('layout.main'); } ?>
